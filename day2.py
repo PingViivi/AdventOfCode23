@@ -61,7 +61,6 @@ def fewestCubeAmounts(game):
     blues.sort()
     return reds[-1] * greens[-1] * blues[-1]
 
-
 # Sum all the possible games together
 output1 = 0
 output2 = []
