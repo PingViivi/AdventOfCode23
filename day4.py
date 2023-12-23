@@ -1,5 +1,3 @@
-from collections import Counter
-
 with open('input-4.txt') as f:
     input = [ i.strip() for i in f.readlines() ]
 
@@ -12,34 +10,33 @@ test_input = [
     'Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11',
 ]
 
-def formatData(input):
+def FormatData(input):
     formatted_data = []
     for card_info in input:
         card_details = card_info.split(':')
         numbers = card_details[1].replace('|', '').split()
         formatted_data.append(list(map(int, numbers)))
-
     return(formatted_data)
 
-formatted_data = formatData(input)
-
-count = []
-for number_list in formatted_data:
-    duplicateList = []
-    uniqueList = []
-    # print(number_list)
-    
-    for i in number_list:
-        if i not in uniqueList:
-            uniqueList.append(i)
-        elif i not in duplicateList:
-            duplicateList.append(i)
-    
-    #print(duplicateList)
-    amount = len(duplicateList)
-    count.append(int(amount))
-    #print(amount)
-    #print(count)
+def CountDublicates(formatted_data):
+    count = []
+    for number_list in formatted_data:
+        duplicateList = []
+        uniqueList = []
+        # print(number_list)
+        
+        for i in number_list:
+            if i not in uniqueList:
+                uniqueList.append(i)
+            elif i not in duplicateList:
+                duplicateList.append(i)
+        
+        #print(duplicateList)
+        amount = len(duplicateList)
+        count.append(int(amount))
+        #print(amount)
+        #print(count)
+    return(count)
 
 def NumberCalculator(count):
     values = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
@@ -51,6 +48,9 @@ def NumberCalculator(count):
             sum += result
     return(sum)
 
+formatted_data = FormatData(input)
+count = CountDublicates(formatted_data)
 output = NumberCalculator(count)
+
 print('Part 1:', output)
         
