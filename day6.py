@@ -2,6 +2,7 @@ with open('input-6.txt') as f:
     input = [ i.strip() for i in f.readlines() ]
 
 testinput = ['Time:        38     94     79     70', 'Distance:   241   1549   1074   1091']
+input2 = ['Time: 38947970', 'Distance: 241154910741091']
 
 # Format the input into four games
 def FormatData(input):
@@ -23,7 +24,6 @@ def GameAmountOfWins(game):
     press_time = 0
     speed = 0
 
-    # t = game_time - press_time
     round_wins = 0
     while press_time < game_time:
         press_time += 1
@@ -34,17 +34,6 @@ def GameAmountOfWins(game):
             round_wins += 1
     return(round_wins)
 
-    #distance = time * speed
-
-formatted_games = FormatData(input)
-#GameAmountOfWins(formatted_games[0])
-
-# Loop the games
-wins_list = []
-for i, game in enumerate(formatted_games, start=1):
-    wins_list.append(GameAmountOfWins(game))
-print(wins_list)
-
 def MultiplyList(number_list):
     # Multiply elements one by one
     result = 1
@@ -52,5 +41,18 @@ def MultiplyList(number_list):
         result = result * x
     return result
 
+# Part 1
+# Loop the games
+formatted_games = FormatData(input)
+wins_list = []
+for i, game in enumerate(formatted_games, start=1):
+    wins_list.append(GameAmountOfWins(game))
+#print(wins_list)
 output = MultiplyList(wins_list)
 print('Part 1:', output)
+
+# Part 2
+game_part2 = FormatData(input2)
+for game in game_part2:
+    output2 = GameAmountOfWins(game)
+    print('Part 2:', output2)
